@@ -9,4 +9,3 @@ A web-based MMO-RPG inspired by the Discord bot Totem, featuring turn-based comb
 - 👥 Party system with synergized abilities
 - 🎒 Inventory and character management
 - 🔄 Real-time multiplayer (planned)
-
