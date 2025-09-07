@@ -1,0 +1,202 @@
+body {
+  font-family: 'Press Start 2P', monospace;
+  background-color: #111;
+  color: #f4f4f4;
+}
+
+// Grid container
+.grid-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 16px;
+  padding: 16px;
+}
+
+// Weapon card base
+.weapon-card {
+  background-color: #1a1a1a;
+  padding: 16px;
+  font-size: 12px;
+  cursor: pointer;
+  transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+  border: 2px solid #888;
+  box-shadow: 0 0 6px #888;
+
+  &:hover {
+    transform: scale(1.03);
+    box-shadow: 0 0 12px #ffcc00;
+  }
+
+  &.selected {
+    border-color: #ffcc00;
+    animation: pulse 1.5s infinite;
+  }
+}
+
+// Rarity-based glow
+.weapon-card.common {
+  border-color: #888;
+  box-shadow: 0 0 6px #888;
+}
+
+.weapon-card.rare {
+  border-color: #00ccff;
+  box-shadow: 0 0 8px #00ccff;
+}
+
+.weapon-card.epic {
+  border-color: #cc00ff;
+  box-shadow: 0 0 10px #cc00ff;
+}
+
+.weapon-card.legendary {
+  border-color: #ffcc00;
+  box-shadow: 0 0 12px #ffcc00;
+}
+
+// Pulse animation for selected cards
+@keyframes pulse {
+  0% { box-shadow: 0 0 6px #ffcc00; }
+  50% { box-shadow: 0 0 12px #ffcc00; }
+  100% { box-shadow: 0 0 6px #ffcc00; }
+}
+
+// Filter panel
+.filter-panel {
+  display: flex;
+  gap: 12px;
+  background-color: #000;
+  border: 2px solid #00ffcc;
+  padding: 12px;
+  margin-bottom: 16px;
+  font-family: 'Press Start 2P', monospace;
+  justify-content: center;
+
+  label {
+    color: #00ffcc;
+    font-size: 10px;
+  }
+
+  input {
+    background-color: #111;
+    color: #fff;
+    border: 1px solid #00ffcc;
+    padding: 4px;
+    width: 60px;
+    font-size: 10px;
+  }
+}
+
+// RPG-style button
+.rpg-button {
+  background-color: #222;
+  border: 2px solid #00ffcc;
+  color: #00ffcc;
+  padding: 6px 12px;
+  font-family: 'Press Start 2P', monospace;
+  font-size: 10px;
+  cursor: pointer;
+
+  &:hover {
+    background-color: #00ffcc;
+    color: #000;
+  }
+}
+
+.rpg-button.active {
+  background-color: #00ffcc;
+  color: #000;
+  box-shadow: 0 0 6px #00ffcc;
+}
+
+// Modal styling
+.weapon-modal {
+  position: fixed;
+  inset: 0;
+  background-color: rgba(0, 0, 0, 0.85);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  font-family: 'Press Start 2P', monospace;
+  font-size: 12px;
+
+  .modal-content {
+    background-color: #000;
+    border: 4px solid #ffcc00;
+    padding: 24px;
+    max-width: 600px;
+    width: 100%;
+    box-shadow: 0 0 16px #ffcc00;
+
+    h2 {
+      color: #ff4444;
+      font-size: 16px;
+      margin-bottom: 12px;
+    }
+
+    p {
+      color: #f4f4f4;
+      margin-bottom: 8px;
+    }
+
+    .italic {
+      font-style: italic;
+      color: #aaa;
+    }
+
+    ul {
+      margin-top: 8px;
+      padding-left: 16px;
+
+      li {
+        color: #fff;
+        margin-bottom: 4px;
+      }
+    }
+  }
+}
+
+.retro-modal {
+  font-family: "Press Start 2P", monospace;
+  background-color: #1a1a1a; /* solid opaque */
+  border: 4px solid #00ffff; /* neon cyan border */
+  box-shadow: 0 0 20px #00ffff, inset 0 0 10px #005555;
+  color: #00ffff;
+  padding: 12px;
+  max-width: 600px;
+  width: 100%;
+  margin: 0 auto;
+  text-align: center;
+  animation: neon 1s infinite alternate;
+
+  @keyframes neon {
+    0% {
+      box-shadow: 0 0 20px #00ffff, inset 0 0 10px #005555;
+    }
+    100% {
+      box-shadow: 0 0 20px #00ffff, inset 0 0 10px #005555;
+    }
+  }
+}
+
+.modal-overlay {
+  position: fixed; /* stays in place even when scrolling */
+  top: 0;
+  left: 0;
+  padding: 80px;
+  width: 80vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 1); /* semi-transparent backdrop */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000; /* make sure it's above the card grid */
+}
+
+// Responsive layout
+@media screen and (max-width: 768px) {
+  .grid-container {
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  }
+}

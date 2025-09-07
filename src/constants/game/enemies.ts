@@ -1,5 +1,5 @@
 // src/constants/game/enemies.ts
-
+import { GAME_LOCATIONS, type Location } from "./locations";
 /**
  * Enemy Types - Different categories of enemies
  */
@@ -225,7 +225,7 @@ export interface Enemy {
   summonLimit?: number;
 
   // Encounter Data
-  spawnLocations: string[]; // Location IDs where this enemy can spawn
+  spawnLocations: Location[]; // Location IDs where this enemy can spawn
   spawnWeight: number; // Relative spawn probability
   packSize: { min: number; max: number }; // How many spawn together
 
@@ -246,7 +246,7 @@ export interface Enemy {
  * Game Enemies Database
  */
 export const GAME_ENEMIES: { [key: string]: Enemy } = {
-  // ===== COMMON FOREST CREATURES =====
+  // ===== COMMON VILLAGE CREATURES =====
 
   shadow_wolf: {
     id: "shadow_wolf",
@@ -422,7 +422,7 @@ export const GAME_ENEMIES: { [key: string]: Enemy } = {
       },
     ],
 
-    spawnLocations: ["dark_forest", "shadow_realm_portal"],
+    spawnLocations: [GAME_LOCATIONS.undead_asylum],
     spawnWeight: 7,
     packSize: { min: 1, max: 3 },
 
@@ -654,7 +654,7 @@ export const GAME_ENEMIES: { [key: string]: Enemy } = {
     hasRegeneration: true,
     regenerationRate: 5,
 
-    spawnLocations: ["crystal_cave"],
+    spawnLocations: [GAME_LOCATIONS.ruined_village],
     spawnWeight: 10,
     packSize: { min: 1, max: 1 },
 
@@ -922,7 +922,7 @@ export const GAME_ENEMIES: { [key: string]: Enemy } = {
     canSummon: true,
     summonLimit: 4,
 
-    spawnLocations: ["ancient_ruins"],
+    spawnLocations: [GAME_LOCATIONS.ruined_village],
     spawnWeight: 10,
     packSize: { min: 1, max: 1 },
 
@@ -939,108 +939,13 @@ export const GAME_ENEMIES: { [key: string]: Enemy } = {
     isActive: true,
     version: "1.3",
     lastModified: new Date(),
-  },
-
-  // ===== SUPPORT/PACK ENEMIES =====
-  lich: {
-    id: "lich",
-    name: "Lich",
-    description: "A powerful undead creature that commands lesser undead.",
-    type: EnemyType.UNDEAD,
-    rarity: EnemyRarity.LEGENDARY,
-    tags: ["undead", "spellcaster"],
-    sprite: "/assets/enemies/undead/undead_lich.png",
-    animationSet: "undead",
-    size: "medium",
-    level: 18,
-    health: 400,
-    mana: 200,
-    attack: 20,
-    defense: 15,
-    magicAttack: 60,
-    magicDefense: 35,
-    speed: 60,
-    accuracy: 95,
-    evasion: 15,
-    criticalChance: 0.2,
-    criticalMultiplier: 2.5,
-    resistances: {
-      dark: 0.8,
-      light: 0.3,
-      physical: 0.1,
-    },
-    immunities: ["poison"],
-    weaknesses: ["fire", "magic"],
-    behavior: CombatBehavior.AGGRESSIVE,
-    abilities: [
-      {
-        id: "bone_prison",
-        name: "Bone Prison",
-        description: "Prisons the target with bone.",
-        type: "debuff",
-        targetType: "single",
-        cooldown: 10,
-        damage: {
-          base: 40,
-          scaling: 4,
-          type: "physical",
-        },
-        statusEffects: [
-          {
-            effect: "bone_prison",
-            duration: 10,
-            strength: 0,
-            chance: 1.0,
-          },
-        ],
-        animationDuration: 0.8,
-        soundEffect: "bone_prison.ogg",
-        visualEffect: "bone_prison",
-      },
-    ],
-    scaling: {
-      healthPerLevel: 50,
-      damagePerLevel: 10,
-      defensePerLevel: 5,
-      experiencePerLevel: 50,
-      healthPerPlayer: 120,
-      damagePerPlayer: 20,
-      minLevel: 20,
-      maxLevel: 30,
-    },
-    experienceReward: 1000,
-    goldReward: { min: 300, max: 500 },
-    lootTable: [],
-
-    isUndead: true,
-    canSummon: true,
-    summonLimit: 4,
-
-    spawnLocations: ["ancient_ruins"],
-    spawnWeight: 10,
-    packSize: { min: 1, max: 1 },
-
-    habitat: "Ancient ruins and necromantic sanctuaries",
-    socialStructure: "Commands lesser undead",
-    threat_level: "Extreme - Legendary boss",
-    knownWeaknesses: [
-      "Holy magic",
-      "Blessed weapons",
-      "Sunlight",
-      "Turn undead spells",
-    ],
-
-    isActive: true,
-    version: "1.3",
-    lastModified: new Date(),
-    aiPatterns: [],
   },
 
   //MOBS
 
   skeleton: {
-    id: "",
-    name: "",
+    id: "skeleton",
+    name: "Skeleton",
     description: "",
     type: EnemyType.BEAST,
     rarity: EnemyRarity.COMMON,
@@ -1078,7 +983,7 @@ export const GAME_ENEMIES: { [key: string]: Enemy } = {
       max: 0,
     },
     lootTable: [],
-    spawnLocations: [],
+    spawnLocations: [GAME_LOCATIONS.undead_asylum],
     spawnWeight: 0,
     packSize: {
       min: 0,
