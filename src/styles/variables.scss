@@ -1,42 +1,12 @@
-@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap");
 
 body {
-  font-family: 'Press Start 2P', monospace;
+  font-family: "Press Start 2P", monospace;
   background-color: #111;
   color: #f4f4f4;
   align-items: center;
-    justify-content: center;
-    margin: 10px;
-}
-
-// Grid container
-.grid-container {
-
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-  gap: 16px;
-  padding: 16px;
-}
-
-// Weapon card base
-.weapon-card {
-  background-color: #1a1a1a;
-  padding: 16px;
-  font-size: 12px;
-  cursor: pointer;
-  transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
-  border: 2px solid #888;
-  box-shadow: 0 0 6px #888;
-
-  &:hover {
-    transform: scale(1.03);
-    box-shadow: 0 0 12px #ffcc00;
-  }
-
-  &.selected {
-    border-color: #ffcc00;
-    box-shadow: 0 0 12px #ffcc00;
-  }
+  justify-content: center;
+  margin: 10px;
 }
 
 // Rarity-based glow
@@ -65,7 +35,6 @@ body {
   box-shadow: 0 0 6px #ff00ff;
 }
 
-
 // Pulse animation for selected cards
 @keyframes pulse {
   0% {
@@ -92,13 +61,14 @@ body {
   margin-bottom: 16px;
   flex-wrap: wrap;
 
-  select, input[type="text"] {
+  select,
+  input[type="text"] {
     background-color: #222;
     color: #f4f4f4;
     border: 2px solid #00ffcc;
     padding: 8px;
     font-size: 10px;
-    font-family: 'Press Start 2P', monospace;
+    font-family: "Press Start 2P", monospace;
 
     &:focus {
       outline: none;
@@ -116,7 +86,9 @@ body {
   padding: 8px 16px;
   font-size: 12px;
   cursor: pointer;
-  transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+  transition:
+    transform 0.2s ease-in-out,
+    box-shadow 0.2s ease-in-out;
 
   &:hover {
     transform: scale(1.03);
@@ -134,7 +106,7 @@ body {
   align-items: center;
   justify-content: center;
   z-index: 1000;
-  font-family: 'Press Start 2P', monospace;
+  font-family: "Press Start 2P", monospace;
   font-size: 12px;
   :hover {
     transform: scale(1.03);
@@ -162,15 +134,15 @@ body {
   }
 }
 .italic {
-    font-style: italic;
-    color: #aaa;
-  }
+  font-style: italic;
+  color: #aaa;
+}
 
-  ul {
-    margin-top: 8px;
-    padding-left: 20px;
+ul {
+  margin-top: 8px;
+  padding-left: 20px;
 
-    li {
-      margin-bottom: 4px;
-    }
+  li {
+    margin-bottom: 4px;
   }
+}

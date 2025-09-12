@@ -66,7 +66,8 @@ export const getRarityStyle = (rarity: WeaponRarity): RarityStyle => {
       fai?: number;
     }
   ): { base: number; bonus: number; total: number } {
-    const base = weapon.attackRating.base;
+    const base = weapon.attackRating
+
     let bonus = 0;
 
     // Apply scaling bonuses
@@ -97,23 +98,23 @@ export const getRarityStyle = (rarity: WeaponRarity): RarityStyle => {
       fai?: number;
     }
   ): number {
-    let totalDamage = weapon.attackRating.total;
+    let scalingDamage = weapon.attackRating;
 
     // Apply scaling bonuses
     if (weapon.scaling.str && playerStats.str) {
-      totalDamage += Math.floor(playerStats.str * weapon.scaling.str);
+      scalingDamage += Math.floor(playerStats.str * weapon.scaling.str);
     }
     if (weapon.scaling.dex && playerStats.dex) {
-      totalDamage += Math.floor(playerStats.dex * weapon.scaling.dex);
+      scalingDamage += Math.floor(playerStats.dex * weapon.scaling.dex);
     }
     if (weapon.scaling.int && playerStats.int) {
-      totalDamage += Math.floor(playerStats.int * weapon.scaling.int);
+      scalingDamage += Math.floor(playerStats.int * weapon.scaling.int);
     }
     if (weapon.scaling.fai && playerStats.fai) {
-      totalDamage += Math.floor(playerStats.fai * weapon.scaling.fai);
+      scalingDamage += Math.floor(playerStats.fai * weapon.scaling.fai);
     }
 
-    return totalDamage;
+    return scalingDamage;
   }
 
   // Check if player meets weapon requirements

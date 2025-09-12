@@ -1,28 +1,22 @@
 import React, { useState, useMemo } from "react";
-import {FilterPanel} from "./FilterPanel";
-import {ItemGrid} from "./ItemGrid";
-import {ItemModal} from "./ItemModal";
+import { FilterPanel } from "./FilterPanel";
+import { ItemGrid } from "./ItemGrid";
+import { ItemModal } from "./ItemModal";
 import "../../../styles/ItemBrowser.scss"; // Your retro styles
-import { Weapon } from '../../../constants/game/weapons_db';
+import { Weapon } from "../../../constants/game/weapons_db";
 import { DEFAULT_PLAYER } from "../../game/Player";
-import { Grid3X3, List } from "lucide-react";
+import { PlayerStatsPanel } from "./PlayerStatsPanel";
 
 export const ItemBrowser = ({ items: weapons }: { items: Weapon[] }) => {
-  const [filters, setFilters] = useState<{ [key: string]: number }>({ str: 0, dex: 0, int: 0, fai: 0 });
+  const [filters, setFilters] = useState<{ [key: string]: number }>({
+    str: 0,
+    dex: 0,
+    int: 0,
+    fai: 0,
+  });
   const [selectedWeapon, setSelectedWeapon] = useState<Weapon | null>(null);
   const [viewMode, setViewMode] = useState<"grid" | "list">("grid");
-  const [searchTerm, setSearchTerm] = useState("");
   const [sortOrder, setSortOrder] = useState("name");
-  const [sortDirection, setSortDirection] = useState("asc");
-
-  const handleSort = (column: string, value: string) => {
-    if (sortOrder === column) {
-      setSortDirection(sortDirection === "asc" ? "desc" : "asc");
-    } else {
-      setSortOrder(column);
-      setSortDirection("asc");
-    }
-  };
 
 const filteredWeapons = useMemo(() => {
   return weapons.filter(
@@ -31,32 +25,39 @@ const filteredWeapons = useMemo(() => {
       w.requirements.dex! <= filters.dex &&
       w.requirements.int! <= filters.int &&
       w.requirements.fai! <= filters.fai
-  );
+  ); 
 }, [filters, weapons]);
+
+const sortedWeapons = useMemo(() => {
+  const sorted = [...filteredWeapons];
+  if (sortOrder === "name") {
+    sorted.sort((a, b) => a.name.localeCompare(b.name));
+  } else if (sortOrder === "attack") {
+    sorted.sort((a, b) => b.attackRating - a.attackRating);
+  } else if (sortOrder === "crit") {
+    sorted.sort((a, b) => b.critChance - a.critChance);
+  } else if (sortOrder === "rarity") {
+    sorted.sort((a, b) => b.rarity.localeCompare(a.rarity));
+  }
+  return sorted;
+}, [filteredWeapons, sortOrder]);
 
   return (
     <div className="browser-container">
       <h1 className="text-center text-cyan-400 text-lg mb-4">
         DISCOVER AND COMPARE LEGENDARY WEAPONS
       </h1>
-      <FilterPanel filters={filters} setFilters={setFilters} />
-      <div className="view-toggle flex gap-2 mb-4">
-        <button
-          className={`rpg-button ${viewMode === "grid" ? "active" : ""}`}
-          onClick={() => setViewMode("grid")}
-        >
-          <Grid3X3 className="w-5 h-5" /> Grid
-        </button>
-        <button
-          className={`rpg-button ${viewMode === "list" ? "active" : ""}`}
-          onClick={() => setViewMode("list")}
-        >
-          <List className="w-5 h-5" /> List
-        </button>
-      </div>
-
+      <FilterPanel
+        filters={filters}
+        setFilters={setFilters}
+        sortOrder={sortOrder}
+        setSortOrder={setSortOrder}
+        viewMode={viewMode}
+        setViewMode={setViewMode}
+      />
+      <PlayerStatsPanel stats={DEFAULT_PLAYER.stats}  setPlayerStats={() => {}} />
       <ItemGrid
-        weapons={filteredWeapons}
+        weapons={sortedWeapons}
         selectedWeapon={selectedWeapon}
         setSelectedWeapon={setSelectedWeapon}
         viewMode={viewMode}
@@ -67,7 +68,6 @@ const filteredWeapons = useMemo(() => {
           weapon={selectedWeapon}
           playerStats={DEFAULT_PLAYER.stats}
           onClose={() => setSelectedWeapon(null)}
-          viewMode={viewMode}
         />
       )}
     </div>

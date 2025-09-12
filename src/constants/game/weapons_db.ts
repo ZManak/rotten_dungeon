@@ -53,10 +53,10 @@ export enum DamageType {
  * Weapon Requirements
  */
 export interface WeaponRequirements {
-  str?: number; // Strength requirement
-  dex?: number; // Dexterity requirement
-  int?: number; // Intelligence requirement
-  fai?: number; // Faith requirement
+  str: number; // Strength requirement
+  dex: number; // Dexterity requirement
+  int: number; // Intelligence requirement
+  fai: number; // Faith requirement
   level?: number; // Character level requirement
   questCompleted?: string[]; // Required completed quests
 }
@@ -140,11 +140,7 @@ export interface Weapon {
   animationSet?: string;
 
   // Attack Rating
-  attackRating: {
-    base: number; // Base damage
-    bonus?: number; // Additional damage from enchantments
-    total: number; // base + bonus
-  };
+  attackRating: number; // Base attack rating
 
   // Combat Stats
   hitChance: number; // 0-100% base hit chance
@@ -211,10 +207,7 @@ export const GAME_WEAPONS: { [key: string]: Weapon } = {
     rarity: WeaponRarity.COMMON,
     tags: ["starter", "one_handed", "metal"],
 
-    attackRating: {
-      base: 25,
-      total: 25,
-    },
+    attackRating: 25,
 
     hitChance: 85,
     critChance: 5,
@@ -231,11 +224,15 @@ export const GAME_WEAPONS: { [key: string]: Weapon } = {
     requirements: {
       str: 8,
       dex: 5,
+      fai: 3,
+      int: 3,
     },
 
     scaling: {
       str: 0.4, // 40% strength scaling
       dex: 0.2, // 20% dexterity scaling
+      fai: 0.1, // 10% faith scaling
+      int: 0.1, // 10% intelligence scaling
     },
 
     enhancementLevel: 0,
@@ -253,6 +250,10 @@ export const GAME_WEAPONS: { [key: string]: Weapon } = {
 
     isTradeable: true,
     weight: 3.5,
+
+    loreText: "A common sword used by adventurers.",
+    origin: "Unknown",
+    previousOwners: ["John Doe", "Jane Smith"],
   },
 
   // ===== RARE WEAPONS =====
@@ -273,11 +274,7 @@ export const GAME_WEAPONS: { [key: string]: Weapon } = {
     iconUrl: "/assets/icons/poison_swords_icon.png",
     animationSet: "dual_sword",
 
-    attackRating: {
-      base: 79,
-      bonus: 34,
-      total: 113,
-    },
+    attackRating: 80,
 
     hitChance: 60,
     critChance: 10,
@@ -303,6 +300,8 @@ export const GAME_WEAPONS: { [key: string]: Weapon } = {
     scaling: {
       str: 0.89, // 189% strength scaling (very high)
       dex: 0.55, // 55% dexterity scaling
+      fai: 0.1, // 10% faith scaling
+      int: 0.1, // 10% intelligence scaling
     },
 
     effects: [
@@ -356,11 +355,7 @@ export const GAME_WEAPONS: { [key: string]: Weapon } = {
     sprite: "/assets/weapons/dragonslayer_greatsword.png",
     animationSet: "greatsword_heavy",
 
-    attackRating: {
-      base: 180,
-      bonus: 45,
-      total: 225,
-    },
+    attackRating: 100,
 
     hitChance: 75,
     critChance: 15,
@@ -380,13 +375,14 @@ export const GAME_WEAPONS: { [key: string]: Weapon } = {
       str: 35,
       dex: 12,
       fai: 15,
-      level: 20,
-      questCompleted: ["slay_ancient_dragon"],
+      int: 0,
     },
 
     scaling: {
       str: 0.95, // 95% strength scaling
       fai: 0.3, // 30% faith scaling
+      dex: 0.1, // 10% dexterity scaling
+      int: 0.1, // 10% intelligence scaling
     },
 
     effects: [
@@ -449,11 +445,7 @@ export const GAME_WEAPONS: { [key: string]: Weapon } = {
     rarity: WeaponRarity.EPIC,
     tags: ["magic", "ice", "two_handed", "crystalline"],
 
-    attackRating: {
-      base: 45,
-      bonus: 85,
-      total: 130,
-    },
+    attackRating: 45,
 
     hitChance: 90,
     critChance: 25,
@@ -471,12 +463,15 @@ export const GAME_WEAPONS: { [key: string]: Weapon } = {
     requirements: {
       int: 25,
       str: 8,
-      level: 15,
+      fai: 0,
+      dex: 0,
     },
 
     scaling: {
       int: 0.85, // 85% intelligence scaling
       fai: 0.2, // 20% faith scaling
+      dex: 0.1, // 10% dexterity scaling
+      str: 0.1, // 10% strength scaling
     },
 
     effects: [
@@ -502,6 +497,11 @@ export const GAME_WEAPONS: { [key: string]: Weapon } = {
         chance: 1.0,
       },
     ],
+
+    durability: {
+      current: 300,
+      max: 300,
+    },
 
     enhancementLevel: 5,
     canEnhance: true,
@@ -529,10 +529,7 @@ export const GAME_WEAPONS: { [key: string]: Weapon } = {
     rarity: WeaponRarity.RARE,
     tags: ["ranged", "dark", "stealth"],
 
-    attackRating: {
-      base: 95,
-      total: 95,
-    },
+    attackRating: 50,
 
     hitChance: 85,
     critChance: 20,
@@ -550,11 +547,15 @@ export const GAME_WEAPONS: { [key: string]: Weapon } = {
     requirements: {
       dex: 20,
       int: 10,
+      fai: 0,
+      str: 0,
     },
 
     scaling: {
       dex: 0.7,
       int: 0.25,
+      fai: 0.1,
+      str: 0.1,
     },
 
     effects: [

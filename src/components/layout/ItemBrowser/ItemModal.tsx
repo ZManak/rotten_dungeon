@@ -21,8 +21,7 @@ export const ItemModal = ({ weapon, playerStats, onClose }: ItemModalProps) => {
           <div>
             <label className="text-green-400">ATK</label>
             <div className="text-white">
-                {weapon.attackRating.base} + {calculateTotalAttackRating(weapon, playerStats).bonus} =
-              {calculateTotalAttackRating(weapon, playerStats).total}
+                {weapon.attackRating} + {calculateTotalAttackRating(weapon, playerStats).bonus} = {calculateTotalAttackRating(weapon, playerStats).total}
             </div>
           </div>
           <div>
