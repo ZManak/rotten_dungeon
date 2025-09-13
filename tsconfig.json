@@ -1,7 +1,27 @@
 {
-  "files": [],
-  "references": [
-    { "path": "./tsconfig.app.json" },
-    { "path": "./tsconfig.node.json" }
-  ]
+  "compilerOptions": {
+    "jsx": "react",
+    "target": "ES2020", // Target modern JavaScript
+    "strict": true, // Enable strict type-checking
+    "skipLibCheck": true, // Skip type checking of declaration files
+    "forceConsistentCasingInFileNames": true, // Enforce consistent casing
+    "outDir": "./dist", // Output directory for compiled files
+    "rootDir": "./src", // Root directory of source files
+    "resolveJsonModule": true, // Allow importing JSON files
+    "typeRoots": [
+      "node_modules/@types"
+    ], // Include type definitions
+    "ignoreDeprecations": "6.0", // Silence deprecation warnings
+    "module": "ESNext",
+    "moduleResolution": "Bundler",
+    "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true
+  },
+  "include": [
+    "src/**/*"
+  ], // Include all TypeScript files in the src directory
+  "exclude": [
+    "node_modules",
+    "dist"
+  ] // Exclude node_modules and output directory
 }
