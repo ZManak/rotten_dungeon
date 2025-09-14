@@ -1,9 +1,9 @@
-import React, { useState, ComponentProps } from "react";
-import { Weapon } from "../../../constants/game/weapons_db";
+import React from "react";
+import { Weapon, WeaponEffect } from "../../../constants/game/weapons_db";
 import { Player } from "../../game/Player";
 import { calculateTotalAttackRating } from "../../../utils/game/utils_weapons";
 import "../../../styles/ItemBrowser.scss"; 
-interface ItemModalProps extends ComponentProps<any> {
+interface ItemModalProps {
   weapon: Weapon;
   playerStats: Player["stats"];
   onClose: () => void;
@@ -31,7 +31,7 @@ export const ItemModal = ({ weapon, playerStats, onClose }: ItemModalProps) => {
         </div>
 
         <div className="text-yellow-400 mb-2">Effects:</div>
-        {weapon.effects?.map((effect: any, idx: number) => (
+        {weapon.effects?.map((effect: WeaponEffect, idx: number) => (
           <div key={idx} className="mb-2">
             <span className="text-green-400 font-bold">{effect.name}</span>
             <p className="text-gray-300 ml-2">{effect.description}</p>

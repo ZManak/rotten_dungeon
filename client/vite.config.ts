@@ -22,6 +22,7 @@ export default defineConfig(({mode}) => {
         "@constants": path.resolve(__dirname, "./src/constants"),
         "@types": path.resolve(__dirname, "./src/types"),
         "@assets": path.resolve(__dirname, "./src/assets"),
+        "@shared": path.resolve(__dirname, "../shared"),
       },
     },
    server: {
@@ -31,12 +32,16 @@ export default defineConfig(({mode}) => {
       // Proxy API calls during development
       proxy: {
         '/api': {
-          target: env.VITE_API_URL || 'http://localhost:3001',
+          target: env.VITE_API_URL || 'http://localhost:4000',
           changeOrigin: true,
           rewrite: (path) => path.replace(/^\/api/, ''),
         },
+        '/graphql': {
+          target: env.VITE_API_URL || 'http://localhost:4000',
+          changeOrigin: true,
+        },
         '/socket.io': {
-          target: env.VITE_SOCKET_URL || 'ws://localhost:3001',
+          target: env.VITE_SOCKET_URL || 'ws://localhost:4000',
           ws: true,
         },
       },

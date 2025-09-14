@@ -1,4 +1,4 @@
-import React , { useState } from "react";
+import React from "react";
 import { Weapon } from "../../../constants/game/weapons_db";
 import { calculateTotalAttackRating } from "../../../utils/game/utils_weapons";
 import { DEFAULT_PLAYER_STATS } from "../../game/Player";

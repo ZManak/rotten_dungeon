@@ -55,7 +55,7 @@ const sortedWeapons = useMemo(() => {
         viewMode={viewMode}
         setViewMode={setViewMode}
       />
-      <PlayerStatsPanel stats={DEFAULT_PLAYER.stats}  setPlayerStats={() => {}} />
+      <PlayerStatsPanel stats={DEFAULT_PLAYER.stats} />
       <ItemGrid
         weapons={sortedWeapons}
         selectedWeapon={selectedWeapon}
