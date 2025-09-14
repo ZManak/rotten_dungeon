@@ -637,11 +637,3 @@ const currentLayout = locationManager.getLocation('undead_asylum');
 const forcedLayout = locationManager.getLocation('undead_asylum', true);
 
 //Console log
-console.log('Random Layout:', randomLayout);
-console.log('Seeded Layout:', seededLayout);
-console.log('Advanced Layout:', advancedLayout);
-console.log('New Layout:', newLayout);
-console.log('Current Layout:', currentLayout);
-console.log('Forced Layout:', forcedLayout);
-console.log('Original Data:', ORIGINAL_LOCATION_DATA);
-console.log('Random Layout Sublocations:',  randomLayout!.sublocations && randomLayout!.sublocations.forEach(sublocation => console.log('Sublocation:' + sublocation.id, sublocation.items, sublocation.entities)));
