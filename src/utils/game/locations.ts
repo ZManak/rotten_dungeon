@@ -361,4 +361,6 @@ export function createSublocation(
   };
 }
 
-console.log(getDynamicLocationEntities(GAME_LOCATIONS.undead_asylum));
+if (process.env.NODE_ENV === "development") {
+  console.log(getDynamicLocationEntities(GAME_LOCATIONS.undead_asylum));
+}
