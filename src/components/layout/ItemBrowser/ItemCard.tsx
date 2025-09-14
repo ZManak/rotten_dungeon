@@ -10,7 +10,7 @@ interface ItemCardProps {
 }
 
 export const ItemCard = ({ weapon, isSelected, onClick }: ItemCardProps) => {
-    const [selectedWeapon, setSelectedWeapon] = useState<Weapon | null>(null);
+    
     return (
       <div
         className={`weapon-card ${weapon.rarity} ${isSelected ? "selected" : ""}`}
