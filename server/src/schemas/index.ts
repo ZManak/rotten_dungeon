@@ -1,11 +1,17 @@
 import { gql } from 'graphql-tag';
 
 export const typeDefs = gql`
+  type WeaponDurability {
+    current: Int!
+    max: Int!
+    repairCost: Int
+  }
+
   type WeaponScaling {
-    str: Int
-    dex: Int
-    int: Int
-    fai: Int
+    str: Float
+    dex: Float
+    int: Float
+    fai: Float
   }
 
   type WeaponEffect {
@@ -43,9 +49,10 @@ export const typeDefs = gql`
     rarity: String!
     attackRating: Int!
     critChance: Int!
-    durability: Int!
+    durability: WeaponDurability
     weight: Float!
-    damageTypes: [String!]!
+    primaryDamageType: String!
+    secondaryDamageType: String
     scaling: WeaponScaling
     effects: [WeaponEffect!]
     attackPattern: AttackPattern

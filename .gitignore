@@ -12,6 +12,11 @@ dist
 dist-ssr
 *.local
 
+# Build artifacts
+*.tsbuildinfo
+build/
+coverage/
+
 # Editor directories and files
 .vscode/*
 !.vscode/extensions.json
@@ -24,6 +29,7 @@ dist-ssr
 *.sw?
 
 # Environment variables
+.env
 .env.local
 .env.development.local
 .env.test.local
@@ -31,3 +37,14 @@ dist-ssr
 
 # Keep .env.example for other developers
 !.env.example
+!*/env.example
+
+# Server specific
+server/node_modules
+server/dist
+server/.env
+
+# Client specific
+client/node_modules
+client/dist
+client/.env

@@ -213,8 +213,3 @@ export const getRarityStyle = (rarity: WeaponRarity): RarityStyle => {
 
     return totalRating;
   }
-
-  // Call the demonstration function only when run directly (not on import)
-  if (require.main === module) {
-    demonstrateScaling();
-  }

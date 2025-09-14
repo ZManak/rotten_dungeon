@@ -1,4 +1,4 @@
-import { createSublocation } from "../../utils/game/locations";
+import { createSublocation } from "../../utils/game/locations_simple";
 
 export enum LocationType {
     SAFE_ZONE = 'safe_zone',

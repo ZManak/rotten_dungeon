@@ -1,6 +1,7 @@
-import { GAME_ENEMIES, type Enemy } from "../../constants/game/enemies";
+// import { GAME_ENEMIES, type Enemy } from "../../constants/game/enemies";
+import type { Enemy } from "../../constants/game/enemies";
 import {
-  GAME_LOCATIONS,
+  // GAME_LOCATIONS,
   type LocationEntity,
   type Location,
   TimeOfDay,
@@ -304,51 +305,6 @@ export function getDynamicLocationEntities(
   });
 }
 
-// Initialize the system
-populateLocationEntities();
-
-// Example usage with custom rules:
-populateLocationEntitiesAdvanced({
-  undead_asylum: {
-    shadow_wolf: {
-      spawnChance: 0.8,
-      maxCount: 2,
-      respawnTime: 20,
-      requirements: {
-        timeOfDay: [TimeOfDay.DAWN, TimeOfDay.DUSK],
-      },
-    },
-  },
-  ruined_village: {
-    crystal_guardian: {
-      spawnChance: 0.1,
-      maxCount: 1,
-      respawnTime: 240, // 4 hours
-      requirements: {
-        levelRequired: 8,
-        questCompleted: ["village_mystery"],
-      },
-    },
-  },
-});
-
-// Example: Add specific enemy to location
-addEnemyToLocation(
-  GAME_ENEMIES.ancient_lich.id,
-  GAME_LOCATIONS.undead_asylum.id,
-  {
-    spawnChance: 0.05,
-    maxCount: 1,
-    respawnTime: 600, // 10 hours
-    requirements: {
-      levelRequired: 15,
-      questCompleted: ["unlock_lich_chamber"],
-      timeOfDay: [TimeOfDay.NIGHT],
-    },
-  }
-);
-
-
 export function createSublocation(
   parent: Location,
   overrides: Partial<Location>
@@ -361,6 +317,5 @@ export function createSublocation(
   };
 }
 
-if (process.env.NODE_ENV === "development") {
-  console.log(getDynamicLocationEntities(GAME_LOCATIONS.undead_asylum));
-}
+// Note: populateLocationEntities() should be called manually after all imports are loaded
+// to avoid circular dependency issues
